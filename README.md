@@ -21,6 +21,8 @@ The most common command for linux systems is `adduser`, sometimes with or withou
 
 ```
 root@target:~$ adduser example
-...
+```
+```
 root@jumper:~$ adduser launchpad
+
 ```
