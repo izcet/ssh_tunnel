@@ -102,10 +102,55 @@ user@client:~$
 syntax and figuring it out myself.*
 <br><br>
 
+## Fifth (and final for the basics), Jump Quietly
+This step is going to make the transition from one machine to another seamless and quick. We already set up the key pair
+authentication between `jmp@jumper` and `hit@target`, but I advise setting up the keypair for `user@client` and
+`jmp@jumper` at this point because beyond here `jmp`'s passwords and keys will not be able to be modified without
+modification from `root@jumper` or another administrator or script.
+- You're going to need `vim` (or `emacs`, if that's how you roll)
+```
+root@jumper:~$ vim /etc/passwd
+```
+```
+root:x:0:0:root:/root:/bin/bash
+...
+...
+(lots of system users here)
+...
+...
+someuser:x:1001:1001:,,,:/home/someuser:/bin/bash
+jmp:x:1000:1000:,,,:/home/jmp:/bin/bash
+```
+Change the last line to the following:
+```
+jmp:x:1000:1000:,,,:/home/jmp:/usr/bin/my_script.sh
+```
+Now create the following script:
+```
+root@jumper:~$ vim /usr/bin/my_script.sh
+```
+```
+#!/bin/bash
+
+ssh hit@localhost -p [port1]
+exit
+```
+Don't forget to 
+```
+root@jumper:~$ chmod +x /usr/bin/my_script.sh
+```
+#### Explanation:
+- **/etc/passwd** : A system file used to keep track of users, at this point we are changing the login shell from
+`/bin/bash` to `my_script.sh`, effectively restricting the actions that the user `jmp` can do to only connect and then
+quit.
+- **my_script.sh**
+
 <br><br><br><br><br><br>
 - TODO: Demonstrate the automation of creating a user via shell script
 - TODO: Setup key generation for other users via shell script
 - TODO: Look up port forwarding in `GatewayPorts` in `/etc/ssh/sshd_config`
-- Todo: make sense of the potential for `ssh -R *:[port1]:localhost:[port2] ...`
-
+- TODO: make sense of the potential for `ssh -R *:[port1]:localhost:[port2] ...`
+- TODO: Add an "active users" functionality
+- Todo: Add linked key/password management (changing password on Target updates Jumper) (add ability to change
+authorized Public Keys on Jumper after gimping)
 
