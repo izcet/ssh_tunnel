@@ -56,17 +56,17 @@ example@target:~$ ssh-copy-id jumper@launchpad
 [anyuser]@target:~$ ssh -R [port1]:localhost:[port2] [anyuser]@launchpad
 ```
 #### Explanation:
-- Any user can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
+- **Any user** can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
 you can even have it run as a script in the background, and/or launch at startup.
 - **Ports** haven't really been covered yet, but it's good practice to change your `/etc/ssh/sshd_config` file to listen on
 a different port. In addition, with this tunnel, the **Jumper** machine will need to know when a connection is inbound
 towards the **Jumper**, or inbound towards the **Target**.
-- port1 : the port that Jumper listens to in order to *forward to __Target__* (This can be any port that Jumper is not
+- **port1** : the port that Jumper listens to in order to *forward to __Target__* (This can be any port that Jumper is not
 already using.
-- localhost : Target wants connections to be forwarded to itself. 
-- port2 : the port that **Target** listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
-- Any user can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
-not `/bin/false` or equivalent)
+- **localhost** : Target wants connections to be forwarded to itself. 
+- **port2** : the port that **Target** listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
+- **Any user** can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
+not `/bin/false` or equivalent. More on that later.)
 
 <br><br><br><br><br><br>
 TODO: Demonstrate the automation of creating a user via shell script
