@@ -8,7 +8,8 @@ otherwise impossible.
 - A command line interface (or TTY) (on your client machine)
 - A target machine (The machine that sits behind the firewall)
 - An intermediary machine (Something that is always available to connect to)
-<br>From here they will be referred to as:
+<br><br>
+From here they will be referred to as:
 - Client
 - Target
 - Jumper
