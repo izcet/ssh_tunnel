@@ -23,7 +23,7 @@ The most common command for linux systems is `adduser`, sometimes with or withou
 root@target:~$ adduser example
 ```
 ```
-root@jumper:~$ adduser launchpad
+root@jumper:~$ adduser jmp
 ```
 You will want to make sure that they have adequate permissions and an appropriate shell at first, though this can be
 modified later.
@@ -37,7 +37,7 @@ These are more secure than passwords for authentication, and allow for instantan
 example@target:~$ ssh-keygen -t rsa
 ```
 ```
-jumper@launchpad:~$ ssh-keygen -t rsa
+jmp@jumper:~$ ssh-keygen -t rsa
 ```
 If you don't already know how to handle keys, I highly recommend looking it up. This crash course will be a
 good introduction but nothing beats research and regular usage.
@@ -51,9 +51,9 @@ An easy and secure way to copy RSA keys from one unix machine to another is with
 - `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'`
 <br><br>
 ```
-example@target:~$ ssh-copy-id jumper@launchpad
+example@target:~$ ssh-copy-id jmp@jumper
 ...
-[anyuser]@target:~$ ssh -R [port1]:localhost:[port2] [anyuser]@launchpad
+[anyuser]@target:~$ ssh -R [port1]:localhost:[port2] [anyuser]@jumper
 ```
 #### Explanation:
 - **Any user** can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
@@ -64,7 +64,7 @@ towards the **Jumper**, or inbound towards the **Target**.
 - **port1** : the port that Jumper listens to in order to *forward to __Target__* (This can be any port that Jumper is not
 already using.
 - **localhost** : Target wants connections to be forwarded to itself. 
-- **port2** : the port that **Target** listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
+- **port2** : the port that **Target** listens to for inbound ssh connections (Target's `/etc/ssh/sshd_config`)
 - **Any user** can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
 not `/bin/false` or equivalent. More on that later.)
 
