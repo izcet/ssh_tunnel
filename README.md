@@ -19,6 +19,8 @@ otherwise impossible.
 ### First, set up your users
 The most common command for linux systems is `adduser`, sometimes with or without modifiers.
 
-```root@target:~$ adduser example
+```
+root@target:~$ adduser example
 ...
-root@jumper:~$ adduser launchpad```
+root@jumper:~$ adduser launchpad
+```
