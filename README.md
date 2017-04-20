@@ -21,6 +21,9 @@ user@client:~$ ssh hit@target
 ```
 *We get an error that Target cannot be reached, or similar. The work around is that Client and Target can both see
 Jumper, so we use Jumper as a middleman.*
+<br><br>
+<br><br>
+
 
 ## First, set up your users
 The most common command for linux systems is `adduser`, sometimes with or without modifiers.
