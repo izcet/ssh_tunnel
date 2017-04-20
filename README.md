@@ -58,12 +58,13 @@ example@target:~$ ssh-copy-id jumper@launchpad
 #### Explanation:
 - Any user can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
 you can even have it run as a script in the background, and/or launch at startup.
-- Ports haven't really been covered yet, but it's good practice to change your `/etc/ssh/sshd_config` file to listen on
-a different port. In addition, with this tunnel, the Jumper machine will need to know when a connection is inbound
-towards the Jumper, or inbound towards the Target.
-- port1 : the port that Jumper listens to in order to forward to Target
+- **Ports** haven't really been covered yet, but it's good practice to change your `/etc/ssh/sshd_config` file to listen on
+a different port. In addition, with this tunnel, the **Jumper** machine will need to know when a connection is inbound
+towards the **Jumper**, or inbound towards the **Target**.
+- port1 : the port that Jumper listens to in order to *forward to __Target__* (This can be any port that Jumper is not
+already using.
 - localhost : Target wants connections to be forwarded to itself. 
-- port2 : the port that Target listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
+- port2 : the port that **Target** listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
 - Any user can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
 not `/bin/false` or equivalent)
 
