@@ -90,7 +90,7 @@ that is.
 The way that you make a connection to Target from Jumper is that you make a connection from Jumper to Jumper at the
 different port we specified earlier.
 ```
-jmp@jumper:~$ ssh-copy-id target@localhost -p [port1]
+jmp@jumper:~$ ssh-copy-id hit@localhost -p [port1]
 ```
 *Remember: port1 is the port Jumper listens to in order to forward.*
 <br><br>
