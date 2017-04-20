@@ -1,2 +1,16 @@
-# moonlight_ssh_tunnel_demo
- A more in-depth writeup of how to set up an SSH tunnel between multiple unix systems.
+## SSH Tunnel Demo
+This will be a crash course tutorial in how to set up a "jump tunnel" between users on unix machines.
+I'll also be showing how to set this up behind a protected firewall to create an inbound connection when one would be
+otherwise impossible.
+
+
+##### What you will need:
+- A command line interface (or TTY) (on your client machine)
+- A target machine (The machine that sits behind the firewall)
+- An intermediary machine (Something that is always available to connect to)
+<br>From here they will be referred to as:
+- Client
+- Target
+- Jumper
+
+<br><br>
