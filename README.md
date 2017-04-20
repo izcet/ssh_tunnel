@@ -15,6 +15,12 @@ otherwise impossible.
 - Target
 - Jumper
 <br><br>
+*Real quick, why? Because Target is behind a firewall that doesn't allow inbound connections. So if we try:*
+```
+user@client:~$ ssh hit@target
+```
+*We get an error that Target cannot be reached, or similar. The work around is that Client and Target can both see
+Jumper, so we use Jumper as a middleman.*
 
 ## First, set up your users
 The most common command for linux systems is `adduser`, sometimes with or without modifiers.
