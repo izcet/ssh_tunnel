@@ -16,7 +16,7 @@ otherwise impossible.
 - Jumper
 <br><br>
 
-### First, set up your users
+## First, set up your users
 The most common command for linux systems is `adduser`, sometimes with or without modifiers.
 
 ```
@@ -30,7 +30,7 @@ modified later.
 <br><br>
 <br><br>
 
-### Second, set up key pairs for authentication
+## Second, set up key pairs for authentication
 These are more secure than passwords for authentication, and allow for instantaneous connection.
 
 ```
@@ -44,7 +44,7 @@ good introduction but nothing beats research and regular usage.
 <br><br>
 <br><br>
 
-### Third, copy keys from Target to Jumper and make the outbound connection
+## Third, copy keys from Target to Jumper and make the outbound connection
 An easy and secure way to copy RSA keys from one unix machine to another is with `ssh-copy-id`.
 - This isn't always available. 
 - In those cases use:
@@ -55,7 +55,7 @@ example@target:~$ ssh-copy-id jumper@launchpad
 ...
 [anyuser]@target:~$ ssh -R [port1]:localhost:[port2] [anyuser]@launchpad
 ```
-Explanation:
+#### Explanation:
 - Any user can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
 you can even have it run as a script in the background, and/or launch at startup.
 - Ports haven't really been covered yet, but it's good practice to change your `/etc/ssh/sshd_config` file to listen on
