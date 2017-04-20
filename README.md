@@ -44,11 +44,12 @@ good introduction but nothing beats research and regular usage.
 <br><br>
 <br><br>
 
-### Third, copy keys and make the outbound connection
+### Third, copy keys from Target to Jumper and make the outbound connection
 An easy and secure way to copy RSA keys from one unix machine to another is with `ssh-copy-id`.
 - This isn't always available. 
 - In those cases use:
-- `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'``
+- `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'`
+<br><br>
 ```
 example@target:~$ ssh-copy-id jumper@launchpad
 ...
