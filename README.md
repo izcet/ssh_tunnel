@@ -101,7 +101,7 @@ user@client:~$
 *Note: I know that there is a way to simply* `ssh hit@jumper -p [port1]` *from client. I'm working on looking up that
 syntax and figuring it out myself.*
 <br><br>
-
+<br><br>
 ## Fifth (and final for the basics), Jump Quietly
 This step is going to make the transition from one machine to another seamless and quick. We already set up the key pair
 authentication between `jmp@jumper` and `hit@target`, but I advise setting up the keypair for `user@client` and
@@ -121,11 +121,11 @@ root:x:0:0:root:/root:/bin/bash
 someuser:x:1001:1001:,,,:/home/someuser:/bin/bash
 jmp:x:1000:1000:,,,:/home/jmp:/bin/bash
 ```
-Change the last line to the following:
+**Change the last line to the following:**
 ```
 jmp:x:1000:1000:,,,:/home/jmp:/usr/bin/my_script.sh
 ```
-Now create the following script:
+**Now create the following script:**
 ```
 root@jumper:~$ vim /usr/bin/my_script.sh
 ```
@@ -135,7 +135,7 @@ root@jumper:~$ vim /usr/bin/my_script.sh
 ssh hit@localhost -p [port1]
 exit
 ```
-Don't forget to 
+**Don't forget to**
 ```
 root@jumper:~$ chmod +x /usr/bin/my_script.sh
 ```
@@ -143,9 +143,30 @@ root@jumper:~$ chmod +x /usr/bin/my_script.sh
 - **/etc/passwd** : A system file used to keep track of users, at this point we are changing the login shell from
 `/bin/bash` to `my_script.sh`, effectively restricting the actions that the user `jmp` can do to only connect and then
 quit.
-- **my_script.sh**
+- **my_script.sh** : As soon as a terminal is opened by user `jmp`, either by logging in locally or through an ssh
+connection, that user's shell environment is replaced by the script we made. Our script immediately goes through the
+process of connecting to the Target machine which (if our keys are configured correctly and Target has set up the
+outbound tunnel) immediately drops us in the shell of `hit@target`. When the connection is closed from `hit@target`, we
+return to our script and immediately execute the `exit` command, which will close our connection to (or terminal in)
+`jmp`.
+<br><br>
+Connection should look something like this:
+```
+user@client:~$ ssh jmp@jumper
+hit@target:~$
+hit@target:~$
+hit@target:~$ exit
+Connection to localhost closed.
+Connection to jumper closed.
+user@client:~$
+```
+The only downside to this "gimped" shell of `jmp` is that they no longer have the ability to add or modify their .ssh
+keys or password. 
+- I'm going to work on overhead scripts that can be run from `hit@target` that will pass through the
+connection to update `jmp@jumper` **Bug me until I post them.**
 
 <br><br><br><br><br><br>
+- TODO: MOTD and banners
 - TODO: Demonstrate the automation of creating a user via shell script
 - TODO: Setup key generation for other users via shell script
 - TODO: Look up port forwarding in `GatewayPorts` in `/etc/ssh/sshd_config`
