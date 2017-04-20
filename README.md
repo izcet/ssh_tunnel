@@ -39,11 +39,16 @@ example@target:~$ ssh-keygen -t rsa
 ```
 jumper@launchpad:~$ ssh-keygen -t rsa
 ```
+If you don't already know how to handle keys, I highly recommend looking it up. This crash course will be a
+good introduction but nothing beats research and regular usage.
 <br><br>
 <br><br>
+
 ### Third, copy keys and make the outbound connection
-An easy and secure way to copy RSA keys from one unix machine to another is with `ssh-copy-id`, though this isn't always
-available. In those cases use `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'`.
+An easy and secure way to copy RSA keys from one unix machine to another is with `ssh-copy-id`.
+- This isn't always available. 
+- In those cases use:
+- `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'``
 ```
 example@target:~$ ssh-copy-id jumper@launchpad
 ...
