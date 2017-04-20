@@ -28,7 +28,6 @@ root@jumper:~$ adduser launchpad
 You will want to make sure that they have adequate permissions and an appropriate shell at first, though this can be
 modified later.
 <br><br>
-TODO: Demonstrate the automation of creating a user via shell script
 <br><br>
 
 ### Second, set up key pairs for authentication
@@ -40,10 +39,32 @@ example@target:~$ ssh-keygen -t rsa
 ```
 jumper@launchpad:~$ ssh-keygen -t rsa
 ```
-TODO: Setup key generation for other users via shell script
-
+<br><br>
+<br><br>
 ### Third, copy keys and make the outbound connection
 An easy and secure way to copy RSA keys from one unix machine to another is with `ssh-copy-id`, though this isn't always
 available. In those cases use `cat ~/.ssh/id_rsa.pub | ssh user@target.machine 'echo >> .ssh/authorized_keys'`.
+```
+example@target:~$ ssh-copy-id jumper@launchpad
+...
+[anyuser]@target:~$ ssh -R [port1]:localhost:[port2] [anyuser]@launchpad
+```
+Explanation:
+- Any user can be used to initialize the tunnel, as long as they are allowed to make ssh connections as a client. Hint:
+you can even have it run as a script in the background, and/or launch at startup.
+- Ports haven't really been covered yet, but it's good practice to change your `/etc/ssh/sshd_config` file to listen on
+a different port. In addition, with this tunnel, the Jumper machine will need to know when a connection is inbound
+towards the Jumper, or inbound towards the Target.
+- port1 : the port that Jumper listens to in order to forward to Target
+- localhost : Target wants connections to be forwarded to itself. 
+- port2 : the port that Target listens to for inbound ssh connections (`/etc/ssh/sshd_config`)
+- Any user can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
+not `/bin/false` or equivalent)
+
+<br><br><br><br><br><br>
+TODO: Demonstrate the automation of creating a user via shell script
+TODO: Setup key generation for other users via shell script
+TODO: Look up port forwarding in `GatewayPorts` in `/etc/ssh/sshd_config`
+Todo: make sense of the potential for `ssh -R *:[port1]:localhost:[port2] ...`
 
 
