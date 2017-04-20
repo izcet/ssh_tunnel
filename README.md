@@ -25,7 +25,9 @@ root@target:~$ adduser hit
 ```
 root@jumper:~$ adduser jmp
 ```
-You will want to make sure that they have adequate permissions and an appropriate shell at first, though this can be
+I'm creating the users`hit` for `target` and `jmp` for `jumper`, but you can name yours whatever you like, or even the
+same thing for both (for easier management and identification).
+You will want to make sure that they have adequate permissions and an appropriate shell to set up at first, though this can be
 modified later.
 <br><br>
 <br><br>
