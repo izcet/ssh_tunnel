@@ -75,7 +75,7 @@ An easy and secure way to copy RSA keys from one unix machine to another is with
 a different port. Anyways, with this tunnel, the **Jumper** machine will need to know when a connection is inbound
 towards the **Jumper**, or inbound towards the **Target**, so we use a different port.
 - **port1** : the port that Jumper listens to in order to *forward to Target* (This can be any port that Jumper is not
-already using.
+already using.)
 - **localhost** : Target wants connections to be forwarded to itself. 
 - **port2** : the port that **Target** listens to for inbound ssh connections (Target's `/etc/ssh/sshd_config`)
 - **anyuser2** : Any user can be used to recieve the connection, but they must be a user that can be signed into (aka have a shell that is
