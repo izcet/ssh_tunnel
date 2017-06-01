@@ -21,8 +21,7 @@ user@client:~$ ssh user@target
 ```
 *We get an error that Target cannot be reached, or similar. The work around is that Client and Target can both see the Proxy, so we use the Proxy as a middleman.*
 <br><br>
-<br><br>
-Source code can be found in [.tunnel_loop.sh](https://github.com/izcet/ssh_tunnel/blob/master/.tunnel_loop.sh).
+*Source code can be found in [.tunnel_loop.sh](https://github.com/izcet/ssh_tunnel/blob/master/.tunnel_loop.sh).*
 <br><br>
 <br><br>
 
@@ -122,4 +121,4 @@ done
 
 Another tip is to run this script at startup, either `rc.local` or `init.d`, or other system-specific file.
 <br><br>
-See [setup_tunnel.sh](https://github.com/izcet/ssh_tunnel/blob/master/setup_tunnel.sh).
+*Source code for automation can be found in [setup_tunnel.sh](https://github.com/izcet/ssh_tunnel/blob/master/setup_tunnel.sh).*
