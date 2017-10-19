@@ -25,6 +25,25 @@ user@client:~$ ssh user@target
 <br><br>
 <br><br>
 
+
+## Part -1: Keys
+These are more secure than passwords for authentication, and allow for instantaneous connection.
+```
+user@machine:~$ ssh-keygen -t rsa -b 4096
+...
+user@client:~$ ssh-copy-id user@target
+```
+#### Explanation:
+- **-t** key type: RSA. Because I said so.
+- **-b** number of bits: The longer the better. 2048 (the length) should be secure until 2030 (the year)
+- **ssh-copy-id** copies the RSA key generated on the local machine to the machine at address (IP/Domain and Port required for SSH). This command is not available on all machines. In those cases use:
+- `cat ~/.ssh/id_rsa.pub | ssh [user]@[target.machine] 'echo >> .ssh/authorized_keys'`
+
+<br>
+If you don't already know how to handle keys, I highly recommend looking it up. This will get you off the ground but nothing beats research and regular usage.
+<br><br>
+
+
 ## Part 0: Variables
 ```
 SITE=""
