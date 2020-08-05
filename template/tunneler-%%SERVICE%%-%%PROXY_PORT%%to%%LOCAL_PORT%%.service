@@ -1,0 +1,16 @@
+[Unit]
+Description=Reverse tunnel via SSH - forwards remote %%PROXY_PORT%% to local %%LOCAL_PORT%% for %%SERVICE%%
+Requires=
+After= # internet
+AssertPathExists=/etc/ssh-tunneler/tunneler.conf
+StartLimitInterval=90
+StartLimitBurst=3
+
+[Service]
+User=tunneler
+Restart=always
+RestartSec=1
+ExecStart/bin/bash /.tunnler/ssh-tunnel-%%SERVICE%%-%%PROXY_PORT%%to%%LOCAL_PORT%%.sh
+
+[Install]
+WantedBy=default.target
