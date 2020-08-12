@@ -20,7 +20,7 @@ function substitute () {
 }
 
 SERVICE_PATH=/etc/systemd/system
-SH_PATH=/etc/ssh_tunneler/active
+SH_PATH=/etc/ssh-tunneler/active
 
 TEMPLATE=tunneler-%%SERVICE%%-%%PROXY_PORT%%to%%LOCAL_PORT%%
 UPDATED="$(echo ${TEMPLATE} | substitute)"
@@ -35,18 +35,18 @@ else
   echo "Leaving the newly created file here."
 fi
 
+mkdir -p ${SH_PATH}
 if [ ! -f ${SH_PATH}/${UPDATED}.sh ] ; then
   mv ${UPDATED}.sh $SH_PATH
   chown tunneler:root $SH_PATH/${UPDATED}.sh
+  chmod +x $SH_PATH/${UPDATED}.sh
 else
   echo "'${UPDATED}.sh' already exists at '${SH_PATH}'!"
   echo "Leaving the newly created file here."
 fi
 
-# systemd-analyze security <unit>
 systemctl daemon-reload
 systemctl enable ${SERVICE}
-# systemctl start ${SERVICE}
 
 echo "Service enabled!"
 echo "Use 'systemctl start ${UPDATED}' to start it"
